@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily data collection: a live sample | Wiggen Digital</title>
+<meta name="description" content="Two data collection jobs that run every morning: a shop's whole catalogue of 1,000 products, and electricity prices for Norway's five price zones. Real output, quality checks and files to download.">
+<meta name="color-scheme" content="light dark">
+<script>(function(){var t=new URLSearchParams(location.search).get("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;})();</script>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f5c44'/%3E%3Cpath d='M8 21l5-6 4 3 7-9' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the content</a>
+
+<header class="top">
+  <div class="wrap top-row">
+    <p class="brand"><span class="mark" aria-hidden="true"></span>Wiggen Digital <span class="tag">Sample project</span></p>
+    <nav aria-label="Sections">
+      <a href="#catalogue">Catalogue</a>
+      <a href="#prices">Prices</a>
+      <a href="#runs">Runs</a>
+      <a href="#method">Method</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero wrap">
+    <p class="eyebrow">Web scraping and data collection</p>
+    <h1>Data collected every morning, and checked before it is published.</h1>
+    <p class="lead">Two collection jobs rebuild this page each day. Everything here is their real output: the figures, the tables and the files you can download.</p>
+
+    <div class="status" id="status" aria-live="polite">
+      <p class="status-line"><span class="pill" id="status-pill">Loading the last run</span> <span id="status-when"></span></p>
+      <dl class="tiles" id="tiles"></dl>
+    </div>
+    <noscript><p class="notice">This page draws its tables and charts with JavaScript. The data files are in the <a href="data/downloads/">downloads folder</a>.</p></noscript>
+  </section>
+
+  <section class="band" id="catalogue" aria-labelledby="catalogue-title">
+    <div class="wrap">
+      <p class="eyebrow">Job 1</p>
+      <h2 id="catalogue-title">A shop's whole catalogue</h2>
+      <p class="intro">The job reads every list page of a book shop, then opens every product page, because eight of the fourteen fields exist only there. The shop is <a href="https://books.toscrape.com/">books.toscrape.com</a>, a public practice site made for this purpose. Its owner assigns the prices at random, so read the figures as a test of the method, not as a book market.</p>
+
+      <div class="two">
+        <div>
+          <h3>Checks this run had to pass</h3>
+          <ul class="checks" id="book-checks"></ul>
+        </div>
+        <div>
+          <h3>What the run found</h3>
+          <ul class="findings" id="book-findings"></ul>
+        </div>
+      </div>
+
+      <div class="two charts">
+        <figure>
+          <figcaption>Products by price</figcaption>
+          <div class="bars" id="price-bars" role="img" aria-label="Number of products in each price band"></div>
+        </figure>
+        <figure>
+          <figcaption>The ten largest categories</figcaption>
+          <div class="bars" id="category-bars" role="img" aria-label="Number of products in the ten largest categories"></div>
+        </figure>
+      </div>
+
+      <h3 id="explore-title">Look through the data</h3>
+      <form class="filters" id="filters" role="search" aria-labelledby="explore-title">
+        <label>Search titles <input type="search" id="q" autocomplete="off" placeholder="For example: light"></label>
+        <label>Category <select id="category"><option value="">All categories</option></select></label>
+        <label>Rating <select id="rating"><option value="">Any rating</option><option value="5">5 stars</option><option value="4">4 stars</option><option value="3">3 stars</option><option value="2">2 stars</option><option value="1">1 star</option></select></label>
+      </form>
+      <p class="count" id="count" aria-live="polite"></p>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Table of products">
+        <table id="books">
+          <thead>
+            <tr>
+              <th scope="col" data-sort="title"><button type="button">Title</button></th>
+              <th scope="col" data-sort="category"><button type="button">Category</button></th>
+              <th scope="col" class="num" data-sort="price_incl_tax"><button type="button">Price</button></th>
+              <th scope="col" class="num" data-sort="stock"><button type="button">In stock</button></th>
+              <th scope="col" class="num" data-sort="rating"><button type="button">Rating</button></th>
+              <th scope="col">Product code</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="pager">
+        <button type="button" id="prev">Previous</button>
+        <span id="page-label"></span>
+        <button type="button" id="next">Next</button>
+      </div>
+
+      <p class="downloads" id="book-downloads"></p>
+    </div>
+  </section>
+
+  <section class="band alt" id="prices" aria-labelledby="prices-title">
+    <div class="wrap">
+      <p class="eyebrow">Job 2</p>
+      <h2 id="prices-title">Electricity prices in Norway, day by day</h2>
+      <p class="intro">Norway has five price zones, and the price changes every day. This job keeps the last thirty days for each zone. It uses the publisher's open API, because when a site offers its data that way, that is the right way to collect it. A finished day is never fetched twice.</p>
+
+      <figure class="chart">
+        <figcaption>Average price per day, in NOK per kWh <span class="soft" id="price-window"></span></figcaption>
+        <div class="legend" id="legend"></div>
+        <div class="svg-wrap"><svg id="line-chart" viewBox="0 0 960 380" role="img" aria-labelledby="line-title line-desc"><title id="line-title">Average electricity price per day for five zones</title><desc id="line-desc">The same figures are in the table below the chart.</desc></svg></div>
+        <p class="readout" id="readout" aria-hidden="true">Point at the chart to read a day.</p>
+      </figure>
+
+      <div class="two">
+        <div>
+          <h3>The latest day in each zone</h3>
+          <div class="table-wrap" tabindex="0" role="region" aria-label="The latest day in each zone">
+            <table id="zones">
+              <thead><tr><th scope="col">Zone</th><th scope="col" class="num">Average</th><th scope="col" class="num">Lowest</th><th scope="col" class="num">Highest</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <h3>Checks this run had to pass</h3>
+          <ul class="checks" id="power-checks"></ul>
+        </div>
+        <figure>
+          <figcaption><label for="zone-pick">Today, through the day, in</label> <select id="zone-pick"></select></figcaption>
+          <div class="svg-wrap"><svg id="day-chart" viewBox="0 0 560 300" role="img" aria-labelledby="day-title"><title id="day-title">Price through the day</title></svg></div>
+          <p class="soft" id="day-note"></p>
+        </figure>
+      </div>
+
+      <details class="as-table">
+        <summary>Show the thirty days as a table</summary>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Average price per day and zone">
+          <table id="power-table"><thead></thead><tbody></tbody></table>
+        </div>
+      </details>
+
+      <p class="downloads" id="power-downloads"></p>
+      <p class="soft">Prices from <a href="https://www.hvakosterstrommen.no">hvakosterstrommen.no</a>, which publishes them freely and asks for this link.</p>
+    </div>
+  </section>
+
+  <section class="band" id="runs" aria-labelledby="runs-title">
+    <div class="wrap">
+      <p class="eyebrow">Run history</p>
+      <h2 id="runs-title">Every run, on the record</h2>
+      <p class="intro">Each morning's run adds a line here. A run that fails a check publishes nothing: yesterday's files stay in place and the line says so.</p>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Table of runs">
+        <table id="run-table">
+          <thead><tr><th scope="col">Started (Norway time)</th><th scope="col" class="num">Took</th><th scope="col" class="num">Products</th><th scope="col" class="num">Changes</th><th scope="col" class="num">Price days fetched</th><th scope="col" class="num">Requests</th><th scope="col" class="num">Retries</th><th scope="col" class="num">Failed</th><th scope="col">Result</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="method" aria-labelledby="method-title">
+    <div class="wrap">
+      <p class="eyebrow">Method</p>
+      <h2 id="method-title">How the collector behaves</h2>
+      <ul class="cards">
+        <li><h3>It says who it is</h3><p>Every request carries one plain name, so a site owner can see what is visiting and why.</p></li>
+        <li><h3>It reads the site's rules first</h3><p>It fetches robots.txt once per site and never requests an address the file disallows.</p></li>
+        <li><h3>It takes its time</h3><p>At most four requests at once, spaced a tenth of a second apart. The catalogue takes about two minutes, on purpose.</p></li>
+        <li><h3>It retries with patience</h3><p>A timeout or a busy server gets three more tries, with a pause that doubles each time. If the server says how long to wait, it waits that long.</p></li>
+        <li><h3>It checks every row</h3><p>Prices must add up, ratings must be 1 to 5, each product code must be unique. A row that breaks a rule is set aside with the reason, never dropped quietly.</p></li>
+        <li><h3>It refuses to publish a bad run</h3><p>If fewer than 99% of the products come back, nothing is published. Yesterday's data stays up and the run is marked as failed.</p></li>
+      </ul>
+      <div class="two">
+        <div>
+          <h3>What I do not collect</h3>
+          <ul class="plain">
+            <li>Personal data about private people.</li>
+            <li>Anything behind a login, unless the account is yours and the terms allow it.</li>
+            <li>Sites whose terms or robots.txt forbid it. Social networks are the usual example.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>What is under the page</h3>
+          <ul class="plain">
+            <li>Python, with 51 automated tests. None of them touches the network.</li>
+            <li>A scheduler that runs the jobs every morning and rebuilds this page.</li>
+            <li>Plain files as output: CSV that opens in Excel, and JSON.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p><strong>A sample project by Wiggen Digital.</strong> The shop is a public practice site and its prices are invented. Electricity prices come from hvakosterstrommen.no. <a href="https://github.com/wiggendigital/data-collection">The source code is on GitHub.</a></p>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
