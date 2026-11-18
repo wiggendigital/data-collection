@@ -1,0 +1,137 @@
+{
+  "books": {
+    "published": true,
+    "passed": true,
+    "partial": false,
+    "rows": 1000,
+    "shop_total": 1000,
+    "list_pages": 50,
+    "product_pages": 1000,
+    "categories": 50,
+    "gates": [
+      {
+        "name": "Every product the shop lists was collected",
+        "passed": true,
+        "detail": "1,000 of 1,000 products (100.0%); the limit is 99%"
+      },
+      {
+        "name": "The list pages add up to the shop's own count",
+        "passed": true,
+        "detail": "1,000 listed; the shop says 1,000"
+      },
+      {
+        "name": "No page was given up on",
+        "passed": true,
+        "detail": "0 pages failed after every retry"
+      },
+      {
+        "name": "Rows that break a rule stay under 1%",
+        "passed": true,
+        "detail": "0 rows rejected"
+      },
+      {
+        "name": "No product appears twice",
+        "passed": true,
+        "detail": "0 duplicates removed"
+      }
+    ],
+    "notes": {
+      "description_start": {
+        "missing": 2,
+        "meaning": "no description on the product page"
+      },
+      "image_url": {
+        "missing": 0,
+        "meaning": "no product image"
+      }
+    },
+    "duplicates_removed": 0,
+    "rejected_count": 0,
+    "rejected": [],
+    "problem_count": 0,
+    "problems": [],
+    "price_mismatches": 0,
+    "fetch": {
+      "requests": 1051,
+      "ok": 1050,
+      "retries": 0,
+      "failed": 0,
+      "bytes": 21920181,
+      "slowest_ms": 1139,
+      "by_status": {
+        "200": 1050,
+        "404": 1
+      }
+    },
+    "changes": {
+      "first_run": false,
+      "new": 0,
+      "removed": 0,
+      "price": 0,
+      "stock": 0,
+      "examples": []
+    },
+    "seconds": 117.6
+  },
+  "power": {
+    "published": true,
+    "passed": true,
+    "rows": 150,
+    "expected": 150,
+    "fetched": 5,
+    "window": [
+      "2026-10-20",
+      "2026-11-18"
+    ],
+    "zones": {
+      "NO1": "Oslo",
+      "NO2": "Kristiansand",
+      "NO3": "Trondheim",
+      "NO4": "Tromsø",
+      "NO5": "Bergen"
+    },
+    "source": {
+      "name": "hvakosterstrommen.no",
+      "url": "https://www.hvakosterstrommen.no"
+    },
+    "gates": [
+      {
+        "name": "Every zone has every day in the window",
+        "passed": true,
+        "detail": "150 of 150 zone-days (100.0%); the limit is 97%"
+      },
+      {
+        "name": "Every day is complete",
+        "passed": true,
+        "detail": "0 days refused as incomplete or unreadable"
+      },
+      {
+        "name": "Prices are in a believable range",
+        "passed": true,
+        "detail": "lowest, average and highest are in order, and between -5 and 100 NOK per kWh"
+      }
+    ],
+    "problem_count": 0,
+    "problems": [],
+    "fetch": {
+      "requests": 6,
+      "ok": 5,
+      "retries": 0,
+      "failed": 0,
+      "bytes": 16650,
+      "slowest_ms": 308,
+      "by_status": {
+        "200": 6
+      }
+    },
+    "seconds": 1.8
+  },
+  "run": {
+    "started": "2026-11-18T18:32:00Z",
+    "finished": "2026-11-18T18:33:59Z",
+    "seconds": 119.4,
+    "ok": true,
+    "partial": false,
+    "agent": "portfolio-data-sample/1.0"
+  }
+}
