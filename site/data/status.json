@@ -57,7 +57,7 @@
       "retries": 0,
       "failed": 0,
       "bytes": 21920181,
-      "slowest_ms": 363,
+      "slowest_ms": 133,
       "by_status": {
         "200": 1050,
         "404": 1
@@ -71,7 +71,7 @@
       "stock": 0,
       "examples": []
     },
-    "seconds": 106.3
+    "seconds": 105.5
   },
   "power": {
     "published": true,
@@ -80,8 +80,8 @@
     "expected": 150,
     "fetched": 5,
     "window": [
-      "2026-10-21",
-      "2026-11-19"
+      "2026-10-22",
+      "2026-11-20"
     ],
     "zones": {
       "NO1": "Oslo",
@@ -118,18 +118,18 @@
       "ok": 5,
       "retries": 0,
       "failed": 0,
-      "bytes": 16778,
-      "slowest_ms": 104,
+      "bytes": 16781,
+      "slowest_ms": 31,
       "by_status": {
         "200": 6
       }
     },
-    "seconds": 1.4
+    "seconds": 1.3
   },
   "run": {
-    "started": "2026-11-19T06:17:36Z",
-    "finished": "2026-11-19T06:19:24Z",
-    "seconds": 107.7,
+    "started": "2026-11-20T06:20:54Z",
+    "finished": "2026-11-20T06:22:41Z",
+    "seconds": 106.9,
     "ok": true,
     "partial": false,
     "agent": "portfolio-data-sample/1.0 (+https://wiggendigital.github.io/data-collection/)"
