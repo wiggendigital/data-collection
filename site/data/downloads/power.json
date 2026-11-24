@@ -1,55 +1,5 @@
 [
   {
-    "date": "2026-10-25",
-    "zone": "NO1",
-    "points": 25,
-    "avg_nok": 0.6043,
-    "min_nok": 0.0881,
-    "min_at": "06:00",
-    "max_nok": 1.2258,
-    "max_at": "17:00"
-  },
-  {
-    "date": "2026-10-25",
-    "zone": "NO2",
-    "points": 25,
-    "avg_nok": 0.6046,
-    "min_nok": 0.0881,
-    "min_at": "06:00",
-    "max_nok": 1.2566,
-    "max_at": "17:00"
-  },
-  {
-    "date": "2026-10-25",
-    "zone": "NO3",
-    "points": 25,
-    "avg_nok": 0.5417,
-    "min_nok": 0.2449,
-    "min_at": "23:00",
-    "max_nok": 0.8649,
-    "max_at": "16:00"
-  },
-  {
-    "date": "2026-10-25",
-    "zone": "NO4",
-    "points": 25,
-    "avg_nok": 0.1601,
-    "min_nok": 0.1303,
-    "min_at": "21:00",
-    "max_nok": 0.1935,
-    "max_at": "00:00"
-  },
-  {
-    "date": "2026-10-25",
-    "zone": "NO5",
-    "points": 25,
-    "avg_nok": 0.6477,
-    "min_nok": 0.1286,
-    "min_at": "23:00",
-    "max_nok": 1.2497,
-    "max_at": "17:00"
-  },
-  {
     "date": "2026-10-26",
     "zone": "NO1",
     "points": 24,
@@ -1498,5 +1448,55 @@
     "min_at": "03:00",
     "max_nok": 3.157,
     "max_at": "18:00"
+  },
+  {
+    "date": "2026-11-24",
+    "zone": "NO1",
+    "points": 24,
+    "avg_nok": 2.4959,
+    "min_nok": 1.9813,
+    "min_at": "04:00",
+    "max_nok": 3.4249,
+    "max_at": "17:00"
+  },
+  {
+    "date": "2026-11-24",
+    "zone": "NO2",
+    "points": 24,
+    "avg_nok": 2.6216,
+    "min_nok": 2.0731,
+    "min_at": "03:00",
+    "max_nok": 3.6463,
+    "max_at": "17:00"
+  },
+  {
+    "date": "2026-11-24",
+    "zone": "NO3",
+    "points": 24,
+    "avg_nok": 1.4906,
+    "min_nok": 1.1233,
+    "min_at": "02:00",
+    "max_nok": 1.7957,
+    "max_at": "19:00"
+  },
+  {
+    "date": "2026-11-24",
+    "zone": "NO4",
+    "points": 24,
+    "avg_nok": 0.412,
+    "min_nok": 0.3026,
+    "min_at": "03:00",
+    "max_nok": 0.781,
+    "max_at": "07:00"
+  },
+  {
+    "date": "2026-11-24",
+    "zone": "NO5",
+    "points": 24,
+    "avg_nok": 2.5439,
+    "min_nok": 2.006,
+    "min_at": "03:00",
+    "max_nok": 3.5136,
+    "max_at": "17:00"
   }
 ]
